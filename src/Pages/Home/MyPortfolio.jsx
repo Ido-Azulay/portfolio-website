@@ -5,34 +5,38 @@ export default function MyPortfolio() {
     return (
         <section className="portfolio--section" id="MyPortfolio">
             <div className="portfolio--container-box">
-                <div className="portfolio--container">
-                    <p className="sub--title">Selected Projects</p>
-                    <h2 className="section--heading">My Portfolio</h2>
+                <div className="portfolio--header">
+                    <p className="portfolio--eyebrow">
+                        <span className="portfolio--eyebrow--line" />
+                        03 / PROJECTS
+                    </p>
+
+                    <h2 className="portfolio--heading">
+                        Selected Projects
+                    </h2>
+
+                    <p className="portfolio--intro">
+                        A few recent projects I've enjoyed working on.
+                    </p>
                 </div>
 
                 <a
-                    id="a_line"
                     href="https://github.com/Ido-Azulay"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-github"
-                    style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        textDecoration: "none",
-                    }}
+                    className="portfolio--github"
                 >
                     <svg
-                        width="28"
-                        height="28"
+                        width="19"
+                        height="19"
                         viewBox="0 0 24 24"
                         fill="currentColor"
                         aria-hidden="true"
                     >
                         <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.16 1.18A11 11 0 0 1 12 6.3c.98 0 1.97.13 2.89.39 2.19-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.03.78 2.08 0 1.5-.01 2.71-.01 3.08 0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
                     </svg>
-                    Visit My GitHub
+                    View GitHub Profile
+                    <span aria-hidden="true">↗</span>
                 </a>
             </div>
 
@@ -51,43 +55,39 @@ export default function MyPortfolio() {
                         </div>
 
                         <div className="portfolio--section--card--content">
-                            <div>
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "10px",
-                                        flexWrap: "wrap",
-                                        marginBottom: "8px",
-                                    }}
-                                >
+                            <div className="portfolio--card--main">
+                                <div className="portfolio--card--title-row">
                                     <h3 className="portfolio--section--title">
                                         {item.title}
                                     </h3>
 
                                     {item.status && (
-                                        <span
-                                            style={{
-                                                fontSize: "12px",
-                                                padding: "4px 8px",
-                                                borderRadius: "5px",
-                                                backgroundColor: "#edf3ed",
-                                                color: "#42654b",
-                                                fontWeight: "600",
-                                            }}
-                                        >
+                                        <span className="portfolio--status">
                                             {item.status}
                                         </span>
                                     )}
                                 </div>
 
                                 {item.technologies && (
-                                    <p className="portfolio--technologies">
-                                        {item.technologies}
-                                    </p>
+                                    <div className="portfolio--tech-list">
+                                        {item.technologies
+                                            .split("·")
+                                            .map((tech) => tech.trim())
+                                            .filter(Boolean)
+                                            .map((tech) => (
+                                                <span
+                                                    key={tech}
+                                                    className="portfolio--tech-tag"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                    </div>
                                 )}
 
-                                <p className="text-md">{item.description}</p>
+                                <p className="portfolio--description">
+                                    {item.description}
+                                </p>
                             </div>
 
                             {item.link && (
@@ -95,31 +95,10 @@ export default function MyPortfolio() {
                                     href={item.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-sm portfolio--link"
-                                    style={{
-                                        display: "inline-flex",
-                                        alignItems: "center",
-                                        gap: "8px",
-                                        textDecoration: "none",
-                                    }}
+                                    className="portfolio--link"
                                 >
                                     View on GitHub
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 20 19"
-                                        fill="none"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            d="M4.66667 1.66675H18V15.0001M18 1.66675L2 17.6667L18 1.66675Z"
-                                            stroke="currentColor"
-                                            strokeWidth="2.66667"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
+                                    <span aria-hidden="true">↗</span>
                                 </a>
                             )}
                         </div>

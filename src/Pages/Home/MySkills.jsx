@@ -27,29 +27,41 @@ const skillGroups = [
 export default function MySkills() {
     return (
         <section className="skills--section" id="mySkills">
-            <div className="portfolio--container">
-                <p className="section--title">Technical Background</p>
-                <h2 className="skills--section--heading">
-                    Technical Skills
-                </h2>
-            </div>
+            <div className="skills--inner">
+                <div className="skills--header">
+                    <p className="skills--eyebrow">
+                        <span className="skills--eyebrow--line" />
+                        01 / SKILLS
+                    </p>
 
-            <div className="skills--section--container">
-                {skillGroups.map((group) => (
-                    <div className="skills--group" key={group.title}>
-                        <h3 className="skills--group--title">
-                            {group.title}
-                        </h3>
+                    <h2 className="skills--section--heading">
+                        My Technical Toolkit
+                    </h2>
 
-                        <div className="skills--tags">
-                            {group.skills.map((skill) => (
-                                <span className="skills--tag" key={skill}>
-                                    {skill}
-                                </span>
-                            ))}
+                    <p className="skills--section--description">
+                        Technologies and tools I've worked with through
+                        academic projects, personal development, and
+                        technical problem-solving.
+                    </p>
+                </div>
+
+                <div className="skills--section--container">
+                    {skillGroups.map((group) => (
+                        <div className="skills--group" key={group.title}>
+                            <h3 className="skills--group--title">
+                                {group.title}
+                            </h3>
+
+                            <div className="skills--tags">
+                                {group.skills.map((skill) => (
+                                    <span className="skills--tag" key={skill}>
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </section>
     );

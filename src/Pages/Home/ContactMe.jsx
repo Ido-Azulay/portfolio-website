@@ -1,199 +1,182 @@
-// export default function ConactMe() {
-//     return (
-//         <section id="Contact" className="contact--section">
-//             <div>
-//                 <p className="sub--title">Get In Touch</p>
-//                 <h2>Contact Me</h2>
-//                 <p className="text--lg">Let's connect! Send me a message and I'll get back to you.</p>
-//             </div>
-//             <form className="contact--form--container">
-//                 <div className="container">
 
-//                     <label htmlFor="first-name" className="contact--label">
-//                         <span className="text-md">First Name</span>
-//                         <input type="text" className="contact--input text-md" name="first-name" id="first-name" required />
-//                     </label>
+import React, { useState } from "react";
+import { send } from "@emailjs/browser";
 
-//                     <label htmlFor="last-name" className="contact--label">
-//                         <span className="text-md">Last Name</span>
-//                         <input type="text" className="contact--input text-md" name="last-name" id="last-name" required />
-//                     </label>
-
-//                     <label htmlFor="email" className="contact--label">
-//                         <span className="text-md">Email</span>
-//                         <input type="email" className="contact--input text-md" name="email" id="email" required />
-//                     </label>
-
-//                     <label htmlFor="phone-number" className="contact--label">
-//                         <span className="text-md">Phone-number</span>
-//                         <input type="number" className="contact--input text-md" name="phone-number" id="phone-number" required />
-//                     </label>
-
-//                 </div>
-//                 {/* 
-//                 <label htmlFor="choose-topic" className="contact--label">
-//                     <span className="text-md">Choose a topic</span>
-//                     <select id="choose-topic" className="contact--input text-md">
-//                         <option>Select One...</option>
-//                         <option>Option 1</option>
-//                         <option>Option 2</option>
-//                         <option>Option 3</option>
-//                     </select>
-//                 </label> */}
-
-//                 <label htmlFor="message" className="contact--label">
-//                     <span className="text-md">Message</span>
-//                     <textarea className="contact--input text-md" id="message" rows={8} placeholder="Type Your Message.." />
-//                 </label>
-
-//                 {/* <label htmlFor="checkbox" className="checkbox--label">
-//                     <input type="checkbox" required name="checkbox" id="checkbox" />
-//                     <span className="text-sm">I accept the terms</span>
-//                 </label> */}
-
-//                 <div>
-//                     <button className="btn btn-primary contact--form--btn">Submit</button>
-//                 </div>
-//             </form>
-//         </section>
-//     );
-// }
-
-import React, { useState } from 'react';
-import { init, send } from '@emailjs/browser';
+const initialForm = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
+};
 
 export default function ContactMe() {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        message: '',
-    });
-
+    const [formData, setFormData] = useState(initialForm);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [statusMessage, setStatusMessage] = useState('');
-
-    // Initialize EmailJS with your user ID
-    init('p0YC6pTrecdlMGaqn'); // Replace with your EmailJS user ID
+    const [statusMessage, setStatusMessage] = useState("");
+    const [statusType, setStatusType] = useState("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setStatusMessage("");
+        setStatusType("");
 
-        send('service_z93b18m', 'template_y5a0aqe', formData) // Replace with your EmailJS service and template IDs
-            .then((result) => {
-                console.log('Email sent successfully:', result.text);
-                setStatusMessage('Thank you for your message. I will get back to you soon.');
-                setFormData({
-                    firstName: '',
-                    lastName: '',
-                    email: '',
-                    phoneNumber: '',
-                    message: '',
-                });
-            }, (error) => {
-                console.log('Email failed to send:', error.text);
-                setStatusMessage('Oops, something went wrong. Please try again.');
-            })
-            .finally(() => {
-                setIsSubmitting(false);
-            });
+        try {
+            await send(
+                "service_z93b18m",
+                "template_y5a0aqe",
+                formData,
+                { publicKey: "p0YC6pTrecdlMGaqn" }
+            );
+
+            setStatusMessage(
+                "Message sent! I'll get back to you soon."
+            );
+            setStatusType("success");
+            setFormData(initialForm);
+        } catch (error) {
+            console.error("EmailJS error:", error);
+            setStatusMessage(
+                "Something went wrong. Please try again."
+            );
+            setStatusType("error");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
         <section id="Contact" className="contact--section">
-            <div>
-                <p className="sub--title">Get In Touch</p>
-                <h2>Contact Me</h2>
-                <p className="text--lg">Let's connect! Send me a message and I'll get back to you.</p>
-            </div>
-            <form className="contact--form--container" onSubmit={handleSubmit}>
-                <div className="container">
-                    <label htmlFor="first-name" className="contact--label">
-                        <span className="text-md">First Name</span>
+            <div className="contact--inner">
+
+                {/* Left column */}
+                <div className="contact--info">
+                    <p className="contact--eyebrow">
+                        <span className="contact--eyebrow-line" />
+                        04 / CONTACT
+                    </p>
+
+                    <h2 className="contact--title">
+                        Let's talk<span>.</span>
+                    </h2>
+
+                    <p className="contact--intro">
+                        Have a question, an opportunity, or just want
+                        to connect? I'd be happy to hear from you.
+                    </p>
+
+                    <div className="contact--socials">
+                        <a
+                            href="www.linkedin.com/in/idoazulay"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="contact--social-link"
+                        >
+                            <span className="contact--social-icon">
+                                in
+                            </span>
+                            LinkedIn
+                            <span className="contact--social-arrow">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                {/* Right column */}
+                <form
+                    className="contact--form--container"
+                    onSubmit={handleSubmit}
+                >
+                    <div className="contact--form--header">
+                        <h3>Send a message</h3>
+                    </div>
+
+                    <label
+                        className="contact--label"
+                        htmlFor="contact-name"
+                    >
+                        <span>Name</span>
                         <input
+                            id="contact-name"
                             type="text"
-                            className="contact--input text-md"
                             name="firstName"
-                            id="first-name"
+                            className="contact--input"
+                            placeholder="Your name"
                             value={formData.firstName}
                             onChange={handleChange}
+                            autoComplete="name"
                             required
                         />
                     </label>
 
-                    <label htmlFor="last-name" className="contact--label">
-                        <span className="text-md">Last Name</span>
+                    <label
+                        className="contact--label"
+                        htmlFor="contact-email"
+                    >
+                        <span>Email</span>
                         <input
-                            type="text"
-                            className="contact--input text-md"
-                            name="lastName"
-                            id="last-name"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-
-                    <label htmlFor="email" className="contact--label">
-                        <span className="text-md">Email</span>
-                        <input
+                            id="contact-email"
                             type="email"
-                            className="contact--input text-md"
                             name="email"
-                            id="email"
+                            className="contact--input"
+                            placeholder="you@example.com"
                             value={formData.email}
                             onChange={handleChange}
+                            autoComplete="email"
                             required
                         />
                     </label>
 
-                    <label htmlFor="phone-number" className="contact--label">
-                        <span className="text-md">Phone Number</span>
-                        <input
-                            type="text"
-                            className="contact--input text-md"
-                            name="phoneNumber"
-                            id="phone-number"
-                            value={formData.phoneNumber}
+                    <label
+                        className="contact--label"
+                        htmlFor="contact-message"
+                    >
+                        <span>Message</span>
+                        <textarea
+                            id="contact-message"
+                            name="message"
+                            className="contact--input contact--textarea"
+                            placeholder="Write your message here..."
+                            rows={5}
+                            value={formData.message}
                             onChange={handleChange}
                             required
                         />
                     </label>
-                </div>
 
-                <label htmlFor="message" className="contact--label">
-                    <span className="text-md">Message</span>
-                    <textarea
-                        className="contact--input text-md"
-                        id="message"
-                        name="message"
-                        rows={8}
-                        placeholder="Type Your Message.."
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-
-                <div>
                     <button
                         type="submit"
-                        className="btn btn-primary contact--form--btn"
+                        className="contact--submit"
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? 'Submitting...' : 'Submit'}
+                        <span>
+                            {isSubmitting
+                                ? "Sending..."
+                                : "Send Message"}
+                        </span>
+                        {!isSubmitting && <span aria-hidden="true">↗</span>}
                     </button>
-                </div>
 
-                {statusMessage && <p>{statusMessage}</p>}
-            </form>
+                    {statusMessage && (
+                        <p
+                            className={`contact--status contact--status--${statusType}`}
+                            role="status"
+                            aria-live="polite"
+                        >
+                            {statusMessage}
+                        </p>
+                    )}
+                </form>
+            </div>
         </section>
     );
 }
