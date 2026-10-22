@@ -2054,3 +2054,9 @@ a.navbar--contact-btn:hover {
 }
 
 /* Responsive Screens Ends*/
+
+@media (min-width: 1101px) {
+    #root {
+        zoom: 0.75;
+    }
+}
