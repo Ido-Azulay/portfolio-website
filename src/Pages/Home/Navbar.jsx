@@ -107,13 +107,12 @@ function Navbar() {
         </div>
         <Link
             onClick={closeNav}
-            activeClass="navbar--active-content"
             spy={true}
             smooth={true}
-            offset={120}
+            offset={-70}
             duration={500}
             to="Contact"
-            className="btn btn-outline-primary"
+            className="navbar--contact-btn"
         >
             Contact Me
         </Link>

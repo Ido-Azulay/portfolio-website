@@ -1263,7 +1263,7 @@ h2 {
     }
 
     .portfolio--section--container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
     }
 }
 
@@ -1296,6 +1296,26 @@ h2 {
 
     .portfolio--section--title {
         font-size: 18px;
+    }
+
+    .portfolio--header {
+        width: 100%;
+        max-width: 100%;
+        text-align: left;
+        align-self: flex-start;
+    }
+
+    .portfolio--eyebrow {
+        justify-content: flex-start;
+    }
+
+    .portfolio--heading,
+    .portfolio--intro {
+        text-align: left;
+    }
+
+    .portfolio--github {
+        align-self: flex-start;
     }
 }
 
@@ -1802,8 +1822,8 @@ h2 {
 
     .skills--section--container,
     .about--section,
-    .portfolio--section--container,
-    .portfolio--container-box,
+    /* .portfolio--section--container,
+    .portfolio--container-box, */
     .footer--link--container,
     .footer--items>ul,
     .footer--content--container {
@@ -1818,9 +1838,9 @@ h2 {
         align-items: center;
     }
 
-    .portfolio--container-box {
+    /* .portfolio--container-box {
         gap: 1.875rem;
-    }
+    } */
 
     .skills--section,
     .testimonial--section,
@@ -1953,6 +1973,53 @@ h2 {
     .nav__hamburger.active :nth-child(3) {
         transform: rotate(-45deg) translate(0.45rem, -0.1875rem);
     }
+}
+
+/* Navbar Contact Button */
+.navbar .navbar--contact-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 24px;
+    background-color: #34708e;
+    color: #ffffff;
+
+    border: 1px solid #34708e;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+a.navbar--contact-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 26px !important;
+    background: transparent !important;
+    color: #34708e !important;
+
+    border: 1px solid #34708e !important;
+    border-radius: 8px !important;
+
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+a.navbar--contact-btn:hover {
+    background: #eaf4f8 !important;
+    color: #285a73 !important;
 }
 
 .fe-63b7d56e305e9550c0a682e8 {

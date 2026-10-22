@@ -34,11 +34,9 @@ export default function HeroSection() {
                     </p>
 
                     <p className="hero--modern--description">
-                        I'm a Computer Science graduate with hands-on
-                        experience building applications, working with
-                        APIs and databases, and solving technical problems.
-                        I enjoy understanding how systems work, learning
-                        new technologies, and collaborating with others.
+                        I love technology, solving problems, and collaborating with others.
+                        <br />
+                        I recently graduated with a degree in Computer Science, where I explored software development, web technologies, databases, and cybersecurity through hands-on projects.
                     </p>
 
                     <div className="hero--modern--actions">
