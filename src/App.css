@@ -2079,9 +2079,8 @@ a.navbar--contact-btn:hover {
 Fix 'ContactMe' button in NavBar
 */
 
-/* Hide Contact Me button on mobile */
-@media screen and (max-width: 1100px) {
-    .navbar--contact-btn {
+@media (max-width: 1100px) {
+    nav.navbar>.navbar--contact-btn {
         display: none !important;
     }
 }
