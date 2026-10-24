@@ -2074,3 +2074,14 @@ a.navbar--contact-btn:hover {
         zoom: 0.75;
     }
 }
+
+/*
+Fix 'ContactMe' button in NavBar
+*/
+
+/* Hide Contact Me button on mobile */
+@media screen and (max-width: 1100px) {
+    .navbar--contact-btn {
+        display: none !important;
+    }
+}
