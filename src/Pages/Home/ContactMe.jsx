@@ -72,7 +72,7 @@ export default function ContactMe() {
 
                     <p className="contact--intro">
                         Have a question, an opportunity, or just want
-                        to connect? I'd be happy to hear from you.
+                        to connect? I'd be happy to hear from you!
                     </p>
 
                     <div className="contact--socials">

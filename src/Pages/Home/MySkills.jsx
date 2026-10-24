@@ -39,9 +39,7 @@ export default function MySkills() {
                     </h2>
 
                     <p className="skills--section--description">
-                        Technologies and tools I've worked with through
-                        academic projects, personal development, and
-                        technical problem-solving.
+                        Technologies and tools I've recently worked with through academic and personal projects.
                     </p>
                 </div>
 
