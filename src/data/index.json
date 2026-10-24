@@ -33,7 +33,7 @@
             "status": "In Progress",
             "technologies": "React · Python · FastAPI · PostgreSQL",
             "description": "A full-stack wedding website featuring invitation-based guest management and RSVP functionality. Built with React, FastAPI, and PostgreSQL, using REST APIs for guest retrieval, response validation, and persistent data storage.",
-            "link": ""
+            "link": "https://github.com/Ido-Azulay/Wedding-Website"
         },
         {
             "id": "2",
@@ -49,7 +49,7 @@
             "title": "Big Data Processing & Analytics Pipeline",
             "technologies": "Python · SQL · DuckDB · SQLite · Streamlit",
             "description": "Built a Python data processing pipeline using DuckDB and SQL to transform large datasets into structured results stored in SQLite. Developed an interactive Streamlit dashboard with data visualizations to explore business performance, customer reviews, and trends.",
-            "link": ""
+            "link": "https://github.com/Ido-Azulay/business-reviews-analytics"
         }
     ]
 }
