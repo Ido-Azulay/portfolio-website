@@ -77,7 +77,7 @@ export default function ContactMe() {
 
                     <div className="contact--socials">
                         <a
-                            href="www.linkedin.com/in/idoazulay"
+                            href="https://www.linkedin.com/in/idoazulay"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="contact--social-link"
