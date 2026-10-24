@@ -90,19 +90,6 @@ function Navbar() {
                     >
                         About Me</Link>
                 </li>
-
-                {/* <li>
-                    <Link onClick={closeNav}
-                        activeClass="navbar--active-content"
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                        to="testimonials"
-                        className="navbar--content"
-                    >
-                        Testimonials</Link>
-                </li> */}
             </ul>
         </div>
         <Link

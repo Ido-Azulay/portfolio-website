@@ -1,6 +1,126 @@
 
 import CvButton from "./CvButton";
 import { Link } from "react-scroll";
+import { useEffect, useState } from "react";
+
+const codeLines = [
+    "// A little about me",
+    "const ido = {",
+    '  education: "Computer Science",',
+    "  interests: [",
+    '    "Software Development",',
+    '    "Systems & Technology",',
+    '    "Problem Solving"',
+    "  ],",
+    "  enjoysCollaboration: true",
+    "};",
+    "// Always learning."
+];
+
+function TypedCode() {
+    const [visibleCharacters, setVisibleCharacters] = useState(0);
+
+    const fullCode = codeLines.join("\n");
+
+    useEffect(() => {
+        if (visibleCharacters >= fullCode.length) return;
+
+        const timeout = setTimeout(() => {
+            setVisibleCharacters((previous) => previous + 1);
+        }, 56);
+
+        return () => clearTimeout(timeout);
+    }, [visibleCharacters, fullCode.length]);
+
+    const visibleLines = fullCode
+        .slice(0, visibleCharacters)
+        .split("\n");
+
+    const activeLine = visibleLines.length - 1;
+
+    function highlightCode(line, index) {
+        if (index === 0 || index === 10) {
+            return <span className="hero--modern--comment">{line}</span>;
+        }
+
+        if (index === 1) {
+            return (
+                <>
+                    <span className="hero--modern--keyword">
+                        {line.slice(0, 5)}
+                    </span>
+                    {line.slice(5)}
+                </>
+            );
+        }
+
+        if (index === 8) {
+            const keywordIndex = line.indexOf("true");
+
+            if (keywordIndex === -1) return line;
+
+            return (
+                <>
+                    {line.slice(0, keywordIndex)}
+                    <span className="hero--modern--keyword">
+                        {line.slice(keywordIndex)}
+                    </span>
+                </>
+            );
+        }
+
+        if ([2, 4, 5, 6].includes(index)) {
+            const quoteStart = line.indexOf('"');
+
+            if (quoteStart === -1) return line;
+
+            const quoteEnd = line.indexOf('"', quoteStart + 1);
+
+            return (
+                <>
+                    {line.slice(0, quoteStart)}
+                    <span className="hero--modern--string">
+                        {quoteEnd === -1
+                            ? line.slice(quoteStart)
+                            : line.slice(quoteStart, quoteEnd + 1)}
+                    </span>
+                    {quoteEnd === -1 ? "" : line.slice(quoteEnd + 1)}
+                </>
+            );
+        }
+
+        return line;
+    }
+
+    return (
+        <div className="hero--modern--typed-code">
+            {codeLines.map((_, index) => {
+                const visibleLine = visibleLines[index];
+
+                return (
+                    <div className="hero--modern--code-line" key={index}>
+                        <span className="hero--modern--line-no">
+                            {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <span className="hero--modern--typed-line">
+                            {visibleLine !== undefined && (
+                                <>
+                                    {highlightCode(visibleLine, index)}
+
+                                    {index === activeLine &&
+                                        visibleCharacters < fullCode.length && (
+                                            <span className="hero--modern--cursor" />
+                                        )}
+                                </>
+                            )}
+                        </span>
+                    </div>
+                );
+            })}
+        </div>
+    );
+}
 
 export default function HeroSection() {
     return (
@@ -67,81 +187,9 @@ export default function HeroSection() {
                         <span>about.js</span>
                         <span className="hero--modern--editor-language">JS</span>
                     </div>
-
                     <div className="hero--modern--editor-body">
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">01</span>
-                            <span className="hero--modern--comment">// A little about me</span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">02</span>
-                            <span>
-                                <span className="hero--modern--keyword">const</span>
-                                {" ido = {"}
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">03</span>
-                            <span className="hero--modern--indent">
-                                education: <span className="hero--modern--string">"Computer Science"</span>,
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">04</span>
-                            <span className="hero--modern--indent">
-                                interests: [
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">05</span>
-                            <span className="hero--modern--indent-double">
-                                <span className="hero--modern--string">"Software Development"</span>,
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">06</span>
-                            <span className="hero--modern--indent-double">
-                                <span className="hero--modern--string">"Systems & Technology"</span>,
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">07</span>
-                            <span className="hero--modern--indent-double">
-                                <span className="hero--modern--string">"Problem Solving"</span>
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">08</span>
-                            <span className="hero--modern--indent">
-                                ],
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">09</span>
-                            <span className="hero--modern--indent">
-                                enjoysCollaboration: <span className="hero--modern--keyword">true</span>
-                            </span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">10</span>
-                            <span>{"};"}</span>
-                        </div>
-
-                        <div className="hero--modern--code-line">
-                            <span className="hero--modern--line-no">11</span>
-                            <span className="hero--modern--comment">// Always learning.</span>
-                        </div>
+                        <TypedCode />
                     </div>
-
                     <div className="hero--modern--editor-footer">
                         <span>JavaScript</span>
                         <span>UTF-8 · Ln 11</span>

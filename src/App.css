@@ -180,20 +180,6 @@ h2 {
 
 /* Section Titles Ends */
 
-/* Navbar Style Starts */
-/* .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 85.333px;
-    background-color: var(--white);
-    box-shadow: 0px 5.333px 80px 0 rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-} */
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -237,6 +223,13 @@ h2 {
 
 .navbar--active-content {
     color: var(--primary);
+}
+
+/* Hide Navbar Contact button on mobile */
+@media (max-width: 700px) {
+    .navbar--contact-btn {
+        display: none !important;
+    }
 }
 
 /* Navbar Style Ends */
@@ -655,6 +648,29 @@ h2 {
     margin-bottom: 24px;
 }
 
+
+/* Hero typing animation */
+
+.hero--modern--typed-line {
+    white-space: pre;
+}
+
+.hero--modern--cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: #7dd3fc;
+    margin-left: 2px;
+    vertical-align: -2px;
+    animation: heroCursorBlink 0.8s step-end infinite;
+}
+
+@keyframes heroCursorBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
 /* ===== End Modern Hero V2 ===== */
 
 
@@ -989,12 +1005,10 @@ h2 {
     }
 
     .about--visual {
-        order: 2;
+        display: none;
     }
 
-    .about--logo {
-        max-width: 190px;
-    }
+
 
     .about--heading {
         font-size: 32px;
