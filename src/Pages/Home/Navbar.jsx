@@ -72,7 +72,7 @@ function Navbar() {
                         activeClass="navbar--active-content"
                         spy={true}
                         smooth={true}
-                        offset={-10}
+                        offset={-80}
                         duration={500}
                         to="AboutMe"
                         className="navbar--content"
@@ -85,7 +85,7 @@ function Navbar() {
                         activeClass="navbar--active-content"
                         spy={true}
                         smooth={true}
-                        offset={110}
+                        offset={-80}
                         duration={500}
                         to="MyPortfolio"
                         className="navbar--content"
